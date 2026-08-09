@@ -1,0 +1,60 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 68vh;
+  position: relative;
+  background-color: #141210;
+  /* Заглушка с плавным затемнением, чтобы текст легко читался */
+  background-image: linear-gradient(rgba(15, 14, 12, 0.85), rgba(15, 14, 12, 0.85)), url('../../assets/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  
+}
+
+.hero h1 {
+  font-size: 32px; /* Чуть уменьшил для идеального отображения на мобилках */
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 1px;
+  margin: 0 0 12px 0;
+  position: relative;
+  z-index: 2;
+  line-height: 1.2;
+}
+
+.hero p {
+  color: #ff9900; /* Если переменная --color-primary не задана, этот оранжевый встанет идеально */
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 0 0 28px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-btn {
+  position: relative;
+  z-index: 2;
+  background: none;
+  border: 2px solid #ff9900;
+  color: #ff9900;
+  padding: 14px 36px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.hero-btn:active {
+  background-color: #ff9900;
+  color: #000000;
+  transform: scale(0.98);
+}
