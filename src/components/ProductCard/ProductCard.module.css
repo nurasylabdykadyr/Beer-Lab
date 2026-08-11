@@ -1,0 +1,90 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 200px;
+  padding: 12px;
+  background-color: #1E1B18;
+  border-radius: 12px;
+  border: 1px solid #2A2622;
+  box-sizing: border-box;
+}
+
+.image {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.info {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.title {
+  color: #FFF;
+  margin: 0 0 6px 0;
+  font-size: 13px;
+  line-height: 1.3;
+}
+
+.price {
+  color: #FF9900;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.unit {
+  color: #888;
+  font-weight: normal;
+  font-size: 11px;
+}
+
+/* Одиночная кнопка + */
+.addBtn {
+  background-color: #FF9900;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  height: 34px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Блок счетчика - 1 + */
+.counterControl {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #2A2622;
+  border-radius: 8px;
+  height: 34px;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.countBtn {
+  background-color: #FF9900;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  width: 28px;
+  height: 26px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.countNumber {
+  color: #FFF;
+  font-weight: bold;
+  font-size: 14px;
+}
