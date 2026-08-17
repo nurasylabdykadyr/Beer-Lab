@@ -15,10 +15,6 @@ function Cart() {
   const [phoneError, setPhoneError] = useState("");
   const navigate = useNavigate();
 
-  const BOT_TOKEN = import.meta.env.VITE_BOT_TOKEN;
-  const CHAT_ID = import.meta.env.VITE_CHAT_ID;
-
-  // --- Валидация ---
   const validatePhone = (value) => {
     const cleaned = value.replace(/[^\d+]/g, "");
     const phoneRegex = /^(\+7|7|8)\d{10}$/;
@@ -28,7 +24,6 @@ function Cart() {
   const validateAddress = (value) => {
     const trimmed = value.trim();
     if (trimmed.length < 5) return false;
-    // Должна быть хотя бы одна цифра (номер дома) и буквы (улица)
     const hasDigit = /\d/.test(trimmed);
     const hasLetter = /[a-zA-Zа-яА-ЯёЁ]/.test(trimmed);
     return hasDigit && hasLetter;
@@ -47,7 +42,7 @@ function Cart() {
         const { latitude, longitude } = position.coords;
         try {
           const response = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&accept-language=ru`
+            `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json&accept-language=ru`,
           );
           const data = await response.json();
 
@@ -76,7 +71,7 @@ function Cart() {
           alert("Ошибка при определении местоположения.");
         }
       },
-      { enableHighAccuracy: true, timeout: 10000 }
+      { enableHighAccuracy: true, timeout: 10000 },
     );
   };
 
@@ -84,15 +79,22 @@ function Cart() {
     const isAddressValid = validateAddress(address);
     const isPhoneValid = validatePhone(phone);
 
-    setAddressError(isAddressValid ? "" : "Введите полный адрес (улица и номер дома)");
-    setPhoneError(isPhoneValid ? "" : "Введите корректный номер (пример: +7 707 123 45 67)");
+    setAddressError(
+      isAddressValid ? "" : "Введите полный адрес (улица и номер дома)",
+    );
+    setPhoneError(
+      isPhoneValid ? "" : "Введите корректный номер (пример: +7 707 123 45 67)",
+    );
 
     if (!isAddressValid || !isPhoneValid) return;
 
     setIsSubmitting(true);
 
     const orderDetails = cart
-      .map((item) => `▪️ ${item.name} x${item.count} = ${item.price * item.count} ₸`)
+      .map(
+        (item) =>
+          `▪️ ${item.name} x${item.count} = ${item.price * item.count} ₸`,
+      )
       .join("\n");
 
     const message = `
@@ -108,18 +110,17 @@ ${orderDetails}
     `;
 
     try {
-      const response = await fetch(
-        `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: message,
-          }),
-        }
-      );
-
+      const response = await fetch("/api/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          address,
+          phone,
+          comment,
+          cart,
+          totalPrice,
+        }),
+      });
       if (response.ok) {
         setIsSuccess(true);
         clearCart();
@@ -136,10 +137,17 @@ ${orderDetails}
   if (isSuccess) {
     return (
       <div className={styles.container}>
-        <div className={styles.successBox} style={{ textAlign: "center", padding: "40px 20px" }}>
-          <h2 style={{ fontSize: "28px", marginBottom: "15px" }}> Заказ успешно принят!</h2>
+        <div
+          className={styles.successBox}
+          style={{ textAlign: "center", padding: "40px 20px" }}
+        >
+          <h2 style={{ fontSize: "28px", marginBottom: "15px" }}>
+            {" "}
+            Заказ успешно принят!
+          </h2>
           <p style={{ color: "#aaa", marginBottom: "30px", lineHeight: "1.5" }}>
-            Менеджер уже получил вашу заявку и свяжется с вами в течение 5 минут для подтверждения.
+            Менеджер уже получил вашу заявку и свяжется с вами в течение 5 минут
+            для подтверждения.
           </p>
           <button
             className={styles.checkoutBtn}

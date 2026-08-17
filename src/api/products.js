@@ -15,9 +15,7 @@ const products = [
 
   // --- ЗАКУСКИ (type: "snack") ---
   { id: 8, name: "Курт штучно", price: 150, unit: "шт.", type: "snack", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSesupUJAYYUZAAFLs0TNyjUhd9qDuxTtgb0EMq-S13xpclApbuli0P8AIX&s=10" },
-  { id: 9, name: "Паутинка 100гр", price: 630, unit: "шт.", type: "snack", img: "" },
   { id: 10, name: "Наш Чечел 70гр палочки", price: 750, unit: "шт.", type: "snack", img: nachChechil },
-  { id: 11, name: "Сайрам чечил 100гр", price: 580, unit: "шт.", type: "snack", img: "" },
   { id: 12, name: "Чесночные сухарики штучный", price: 100, unit: "шт.", type: "snack", img: "" },
   { id: 13, name: "Чечил Адыгей Коса", price: 850, unit: "шт.", type: "snack", img: adygeiKosa },
   { id: 14, name: "БиоКурт Ermak 60гр", price: 800, unit: "шт.", type: "snack", img: "https://uz.all.biz/img/uz/catalog/137869.jpg" },

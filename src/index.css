@@ -1,10 +1,10 @@
 :root {
   --bg-main: #0F0E0C;
   --bg-card: #1E1B18;
-  --color-primary: #DDA15E; /* Янтарный золотой */
+  --color-primary: #DDA15E; 
   --color-text: #FFFFFF;
   --color-text-muted: #A0A0A0;
-  --color-accent: #E63946; /* Красный для ХИТ */
+  --color-accent: #E63946; 
 }
 
 * {

@@ -3,20 +3,20 @@ import React, { createContext, useContext, useState, useEffect } from 'react'
 const CartContext = createContext()
 
 export function CartProvider({ children }) {
-  // Загружаем из localStorage при старте
+  
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem('beerlab_cart')
     return savedCart ? JSON.parse(savedCart) : []
   })
 
-  // Сохраняем в localStorage при каждом изменении
+  
   useEffect(() => {
     localStorage.setItem('beerlab_cart', JSON.stringify(cart))
   }, [cart])
 
   const addToCart = (product) => {
     setCart((prevCart) => {
-      // Определяем шаг: 0.5 для литров, 1 для штучного товара
+      
       const step = product.unit === 'л.' ? 0.5 : 1
       const existing = prevCart.find((item) => item.id === product.id)
       
@@ -36,7 +36,7 @@ export function CartProvider({ children }) {
 
       const step = existing.unit === 'л.' ? 0.5 : 1
 
-      // Если после вычитания остается меньше 1, удаляем товар из корзины
+      
       if (existing.count - step < 1) {
         return prevCart.filter((item) => item.id !== productId)
       }

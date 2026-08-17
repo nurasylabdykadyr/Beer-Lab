@@ -5,13 +5,13 @@ import { useCart } from '../../context/CartContext';
 function ProductCard({ product }) {
   const { cart, addToCart, removeFromCart } = useCart();
 
-  // Находим текущий товар в корзине
+  
   const cartItem = cart.find((item) => item.id === product.id);
   const count = cartItem ? cartItem.count : 0;
 
   return (
     <div className={styles.card}>
-      {/* Отображаем картинку только если ссылка на неё реально есть */}
+
       {product.img && product.img.trim() !== '' && (
         <img src={product.img} alt={product.name} className={styles.image} />
       )}
@@ -23,7 +23,6 @@ function ProductCard({ product }) {
         </div>
       </div>
 
-      {/* Если товар уже добавлен, показываем - count +, иначе просто + */}
       {count > 0 ? (
         <div className={styles.counterControl}>
           <button className={styles.countBtn} onClick={() => removeFromCart(product.id)}>-</button>
